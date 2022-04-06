@@ -15,6 +15,7 @@ typedef struct compu PC;
 
 void imprimir(PC *compu);
 void masVieja(PC *compu);
+void masVeloz(PC *compu);
 
 int main(){
 
@@ -33,6 +34,8 @@ int main(){
 
     imprimir(pc);
     masVieja(pc);
+    masVeloz(pc);
+
     printf("\n");
     return 0;
 }
@@ -52,13 +55,28 @@ void imprimir(PC *compu)
  
 void masVieja(PC *compu)
 {
-    int aux = 0;
+    int aux = compu[0].anio, cont;
     for (int i = 0; i < TAM; i++)
     {
-        if (aux < compu[i].anio)
+        if (aux > compu[i].anio)
         {
             aux = compu[i].anio;
+            cont = i+1;
         }   
     }
-    printf("La pc mas vieja es de: %d", aux);
+    printf("\nLa pc mas vieja es la pc %d del año: %d\n",cont, aux);
 }  
+
+void masVeloz(PC *compu)
+{
+    int aux = compu[0].velocidad, cont;
+    for (int i = 0; i < TAM; i++)
+    {
+        if (aux <= compu[i].velocidad)
+        {
+            aux = compu[i].velocidad;
+            cont = i+1;
+        }  
+    }
+    printf("\nLa pc mas veloz es la pc %d con una velocidad de: %dGHz\n",cont, aux); 
+}
